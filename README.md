@@ -1,77 +1,113 @@
 # SMS Spam Classification with SVC and Gradio
 
+![Gradio SMS Classifier](images/intro_gradio.png)
+
+## Table of Contents
+- [Overview](#overview)
+- [Why This Matters: Business Applications 📊](#why-this-matters-business-applications-📊)
+- [Features 🚀](#features-🚀)
+- [Understanding the Two Notebooks 📖](#understanding-the-two-notebooks-📖)
+  - [Notebook 1: SMS Text Classification (Traditional Model)](#notebook-1-sms-text-classification-traditional-model)
+  - [Notebook 2: Gradio SMS Classification (Interactive Model)](#notebook-2-gradio-sms-classification-interactive-model)
+  - [Comparison of Both Approaches](#comparison-of-both-approaches)
+- [Project Implementation 💡](#project-implementation-💡)
+  - [1. SMS Classification Model](#1-sms-classification-model)
+  - [2. SMS Prediction Function](#2-sms-prediction-function)
+  - [3. Gradio Web Application](#3-gradio-web-application)
+- [Installation & Setup ⚙️](#installation-setup-⚙️)
+- [Usage 📌](#usage-📌)
+  - [Train the Model](#train-the-model)
+  - [Run the Gradio App](#run-the-gradio-app)
+- [Example Test Messages 📝](#example-test-messages-📝)
+- [Dependencies 📦](#dependencies-📦)
+- [Future Enhancements 🔮](#future-enhancements-🔮)
+- [License 📜](#license-📜)
+
 ## Overview
-Welcome to the **SMS Spam Classification Project**! This project utilizes a **linear Support Vector Classification (SVC) model** to classify SMS messages as spam or not. The trained model is integrated into a **Gradio app**, allowing users to input text messages and receive real-time predictions.
+This project is designed to **detect spam messages** using a machine learning model. By leveraging **Support Vector Classification (SVC)** and **TF-IDF vectorization**, we trained a model to classify SMS messages as either **spam or not spam (ham)**.
+
+We further improved this solution by integrating it into a **Gradio-powered web application**, making it easy for users to classify messages in real-time.
+
+## Why This Matters: Business Applications 📊
+Spam detection is a crucial problem in modern communication systems. Businesses and individuals benefit in several ways:
+
+| **Business Sector** | **Use Case** |
+|-----------------|---------------------------|
+| 📩 **Email Providers** | Automatically filtering spam emails to improve inbox experience. |
+| 📱 **Telecom Companies** | Blocking fraudulent SMS messages to protect users. |
+| 🏦 **Banking & Finance** | Identifying phishing scams sent via SMS. |
+| 🛍️ **E-commerce** | Preventing spam promotions from affecting customer engagement. |
+| 🏥 **Healthcare** | Filtering spam messages in patient communications. |
 
 ## Features 🚀
-- **Support Vector Classification (SVC):** A robust machine learning model optimized for text classification.
-- **Text Preprocessing:** Includes tokenization, vectorization, and feature extraction with TF-IDF.
-- **Interactive UI with Gradio:** A user-friendly interface for testing SMS messages.
-- **Real-time Classification:** Instant spam detection with clear feedback.
-- **Minimal Setup:** Simple execution with Python scripts and Jupyter notebooks.
+- **Spam Detection:** Classifies messages as spam or ham.
+- **Machine Learning Model:** Uses **Support Vector Classification (SVC)**.
+- **Text Preprocessing:** Converts SMS text into numerical features with **TF-IDF vectorization**.
+- **Interactive Web App:** Provides real-time classification with **Gradio**.
+- **Scalable & Adaptable:** The model can be retrained for custom datasets.
+
+## Understanding the Two Notebooks 📖
+This repository contains **two key notebooks**, each serving a different purpose.
+
+### **Notebook 1: SMS Text Classification (Traditional Model)**
+📌 **Purpose:**
+- Loads the SMS dataset.
+- Preprocesses text messages.
+- Trains a **Linear Support Vector Classifier (SVC)** model.
+- Evaluates model performance.
+
+### **Notebook 2: Gradio SMS Classification (Interactive Model)**
+📌 **Purpose:**
+- Uses the trained model from Notebook 1.
+- Implements a **Gradio-powered web interface**.
+- Allows users to input messages and classify them **in real-time**.
+
+### **Comparison of Both Approaches**
+| **Feature** | **Traditional Model (Notebook 1)** | **Gradio Model (Notebook 2)** |
+|------------|--------------------------------|--------------------------------|
+| **Training & Testing** | Trains an SVC model on SMS data | Uses pre-trained model for classification |
+| **Evaluation** | Computes accuracy & metrics | Not needed (already trained) |
+| **User Interaction** | No user interaction | Users can test SMS messages via UI |
+| **Deployment** | Not deployed | Live web app with Gradio |
+
+**✅ Conclusion:** The **Gradio model enhances** the traditional model by providing an **easy-to-use interface**, making it accessible to non-technical users.
 
 ## Project Implementation 💡
 ### **1. SMS Classification Model**
 - Loads and preprocesses `SMSSpamCollection.csv`.
-- Sets up **features** (`text` column) and **target** (`label` column).
-- Splits the data into **training (67%) and testing (33%)** sets.
-- Builds a **Pipeline** using `TfidfVectorizer` and `LinearSVC`.
-- Trains the model and returns it for classification.
+- Sets up **features** (`text_message`) and **target** (`label`).
+- Trains a **TF-IDF + Linear SVC** model.
 
 ### **2. SMS Prediction Function**
-- Uses the trained model to predict new text classifications.
-- Outputs a response indicating whether the input is **spam or ham (not spam)**.
-- Example responses:
-  - **Ham:** `The text message: "{text}", is not spam.`
-  - **Spam:** `The text message: "{text}", is spam.`
+- Uses the trained model to classify messages.
+- Returns **"spam" or "not spam"**.
 
 ### **3. Gradio Web Application**
-- Uses `gr.Interface()` to create an interactive app.
-- Takes user input and returns classification results.
-- Provides an easy-to-use text input and output interface.
-- Launches a **publicly shareable URL** for easy testing.
+- Creates an interactive web app with `gr.Interface()`.
+- Allows real-time SMS classification.
 
-## Installation ⚙️
-To set up the project, install the required dependencies:
-
+## Installation & Setup ⚙️
 ```bash
 pip install -r requirements.txt
 ```
 
 ## Usage 📌
 ### **Train the Model**
-Run the script to preprocess the data and train the model:
-
 ```bash
 python train_model.py
 ```
 
 ### **Run the Gradio App**
-Start the Gradio interface:
-
 ```bash
 python app.py
 ```
 
-This will launch a **web-based UI** where users can enter text messages and receive instant classification results.
-
-## File Structure 📂
-```
-├── data/                # Dataset for training
-├── models/              # Trained model storage
-├── notebooks/           # Jupyter notebooks for experimentation
-├── scripts/             # Python scripts for training and deployment
-│   ├── train_model.py   # Model training script
-│   ├── app.py           # Gradio app script
-├── README.md            # Project documentation
-```
-
 ## Example Test Messages 📝
-Use these sample messages to test your application:
-1. **"You are a lucky winner of $5000!"**
-2. **"You won 2 free tickets to the Super Bowl."**
-3. **"You won 2 free tickets to the Super Bowl. Text us to claim your prize."**
-4. **"Thanks for registering. Text 4343 to receive free updates on Medicare."**
+| **Test Message** | **Expected Output** |
+|-----------------|------------------|
+| "You won $5000!" | Spam |
+| "Meeting at 5 PM?" | Not Spam |
+| "Claim your free prize now!" | Spam |
 
 ## Dependencies 📦
 - **Python 3.x**
@@ -81,9 +117,9 @@ Use these sample messages to test your application:
 - **Gradio**
 
 ## Future Enhancements 🔮
-- Experiment with **alternative classification models** for improved accuracy.
-- Enhance text preprocessing for **better spam detection**.
-- Deploy as a **cloud-hosted web service** for broader accessibility.
+- **Train on larger datasets** for better accuracy.
+- **Experiment with deep learning models**.
+- **Deploy as a cloud-hosted web service**.
 
 ## License 📜
-This project is licensed under the **MIT License**. Contributions are welcome!
+This project is licensed under the **MIT License**.

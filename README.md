@@ -70,7 +70,9 @@ This repository contains **two key notebooks**, each serving a different purpose
 | **User Interaction** | No user interaction | Users can test SMS messages via UI |
 | **Deployment** | Not deployed | Live web app with Gradio |
 
-**✅ Conclusion:** The **Gradio model enhances** the traditional model by providing an **easy-to-use interface**, making it accessible to non-technical users.
+---
+
+**Conclusion:** The **Gradio model enhances** the traditional model by providing an **easy-to-use interface**, making it accessible to non-technical users.
 
 ---
 
@@ -128,7 +130,7 @@ Example:
 ```python
 predict_sms("Congratulations! You’ve won a free iPhone. Claim now!")  # Output: "spam"
 predict_sms("Hey, are we still meeting at 6 PM?")  # Output: "not spam"
-
+```
 ### **3️⃣ Gradio Web Application**
 
 To make the model accessible to non-technical users, an interactive Gradio-based web app is implemented.
@@ -150,14 +152,18 @@ Deployment Ready:
 
 The Gradio app can be hosted locally or deployed to Hugging Face Spaces, Google Colab, or AWS.
 
---- 
 
-✅ Summary:
-This project combines machine learning (SVC) and Gradio UI to create a powerful, user-friendly SMS spam classifier. The model can be retrained with new data, making it scalable and adaptable for real-world applications.
+
+### Summary
+
+This project combines **machine learning (SVC)** and **Gradio UI** to create a powerful, user-friendly SMS spam classifier. The model can be **retrained with new data**, making it **scalable** and **adaptable** for real-world applications.
 
 ---
 
 ## Installation & Setup ⚙️
+
+Ensure you have Python 3.x installed, then install the required dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
